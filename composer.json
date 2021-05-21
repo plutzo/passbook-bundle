@@ -22,7 +22,6 @@
     "require-dev": {
         "eo/symfony-test-edition": "dev-master"
     },
-    "target-dir": "Marlinc/PassbookBundle",
     "autoload": {
         "psr-0": {
             "Marlinc\\PassbookBundle": ""
