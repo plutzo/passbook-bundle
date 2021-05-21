@@ -1,0 +1,37 @@
+{
+    "name":        "marlinc/passbook-bundle",
+    "type":        "symfony-bundle",
+    "description": "iOS Passbook for Symfony",
+    "keywords":    ["passbook", "ios", "pass", "mobile", "wallet", "coupons", "tickets"],
+    "homepage":    "https://github.com/eymengunay/PassbookBundle",
+    "license":     "MIT",
+    "authors": [
+        {
+            "name": "Eymen Gunay",
+            "email": "eymen@egunay.com"
+        }
+    ],
+    "repositories": [{
+        "type": "composer",
+        "url": "https://packages.aha.biz"
+    }],
+    "require": {
+        "symfony/symfony": "^5.2",
+        "eo/passbook": "^3.0",
+        "symfony/phpunit-bridge": "^5.2"
+    },
+    "require-dev": {
+        "eo/symfony-test-edition": "dev-master"
+    },
+    "target-dir": "Marlinc/PassbookBundle",
+    "autoload": {
+        "psr-0": {
+            "Marlinc\\PassbookBundle": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
