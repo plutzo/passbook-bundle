@@ -16,12 +16,14 @@
         "url": "https://packages.aha.biz"
     }],
     "require": {
+        "symfony/symfony": "^5.2",
         "eo/passbook": "^3.0",
         "symfony/phpunit-bridge": "^5.2"
     },
     "require-dev": {
         "eo/symfony-test-edition": "dev-master"
     },
+    "target-dir": "Eo/PassbookBundle",
     "autoload": {
         "psr-0": {
             "Marlinc\\PassbookBundle": ""
