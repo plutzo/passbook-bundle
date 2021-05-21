@@ -7,9 +7,9 @@ use Passbook\Pass\Barcode;
 use Passbook\Pass\Image;
 use Passbook\Pass\Structure;
 use Passbook\Type\EventTicket;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class DemoController extends Controller
+class DemoController extends AbstractController
 {
     public function indexAction()
     {

@@ -17,8 +17,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('eo_passbook');
+        $treeBuilder = new TreeBuilder('eo_passbook');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
