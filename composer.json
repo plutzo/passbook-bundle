@@ -16,7 +16,6 @@
         "url": "https://packages.aha.biz"
     }],
     "require": {
-        "symfony/symfony": "^5.2",
         "eo/passbook": "^3.0",
         "symfony/phpunit-bridge": "^5.2"
     },
