@@ -3,7 +3,7 @@
     "type":        "symfony-bundle",
     "description": "iOS Passbook for Symfony",
     "keywords":    ["passbook", "ios", "pass", "mobile", "wallet", "coupons", "tickets"],
-    "homepage":    "https://github.com/eymengunay/PassbookBundle ",
+    "homepage":    "https://github.com/eymengunay/PassbookBundle",
     "license":     "MIT",
     "authors": [
         {
@@ -16,7 +16,6 @@
         "url": "https://packages.aha.biz"
     }],
     "require": {
-        "symfony/symfony": "^5.2",
         "eo/passbook": "^3.0",
         "symfony/phpunit-bridge": "^5.2"
     },
