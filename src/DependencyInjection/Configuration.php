@@ -1,6 +1,6 @@
 <?php
 
-namespace Eo\PassbookBundle\DependencyInjection;
+namespace Marlinc\PassbookBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

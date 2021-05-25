@@ -1,6 +1,6 @@
 <?php
 
-namespace Eo\PassbookBundle\Controller;
+namespace Marlinc\PassbookBundle\Controller;
 
 use Passbook\Pass\Field;
 use Passbook\Pass\Barcode;

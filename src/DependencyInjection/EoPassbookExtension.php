@@ -1,6 +1,6 @@
 <?php
 
-namespace Eo\PassbookBundle\DependencyInjection;
+namespace Marlinc\PassbookBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -22,7 +22,7 @@ class EoPassbookExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
 
         $container->setParameter('eo_passbook.pass_type_identifier', $config['pass_type_identifier']);

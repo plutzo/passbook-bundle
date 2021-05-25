@@ -23,9 +23,7 @@
         "eo/symfony-test-edition": "dev-master"
     },
     "autoload": {
-        "psr-0": {
-            "Marlinc\\PassbookBundle": ""
-        }
+        "psr-4": { "Marlinc\\PassbookBundle\\": "src/" }
     },
     "extra": {
         "branch-alias": {

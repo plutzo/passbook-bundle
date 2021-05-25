@@ -1,6 +1,6 @@
 <?php
 
-namespace Eo\PassbookBundle;
+namespace Marlinc\PassbookBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
