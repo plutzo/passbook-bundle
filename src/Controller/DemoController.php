@@ -7,48 +7,65 @@ use Passbook\Pass\Barcode;
 use Passbook\Pass\Image;
 use Passbook\Pass\Structure;
 use Passbook\Type\EventTicket;
+use Passbook\PassFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Marlinc\PassbookBundle\Services\IosPassBook;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\Routing\Annotation\Route;
 
 class DemoController extends AbstractController
 {
-    public function indexAction()
+    /**
+     * @Route("/passbook/sample", name="passbook_sample" , methods={"GET","HEAD"} )
+     */
+    public function indexAction(PassFactory $passFactory)
     {
-        // Get pass factory
-        $factory = $this->get('pass_factory');
+        dd('sss');
+        $pass = new EventTicket("123456".rand(1000,9999), "The Beat Goes On");
+        $pass->setBackgroundColor('rgb(60, 65, 76)');
+        $pass->setLogoText('Apple Inc.');
 
-        // Create an event ticket
-        $ticket = new EventTicket("1234567890", "The Beat Goes On");
-        $ticket->setBackgroundColor('rgb(60, 65, 76)');
-        $ticket->setLogoText('Apple Inc.');
 
         // Create pass structure
         $structure = new Structure();
 
-        // Add primary field
+// Add primary field
         $primary = new Field('event', 'The Beat Goes On');
         $primary->setLabel('Event');
         $structure->addPrimaryField($primary);
 
-        // Add secondary field
+// Add secondary field
         $secondary = new Field('location', 'Moscone West');
         $secondary->setLabel('Location');
         $structure->addSecondaryField($secondary);
 
-        // Add auxiliary field
+// Add auxiliary field
         $auxiliary = new Field('datetime', '2013-04-15 @10:25');
         $auxiliary->setLabel('Date & Time');
         $structure->addAuxiliaryField($auxiliary);
 
-        // Set pass structure
-        $ticket->setStructure($structure);
+// Add icon image
+        $icon = new Image(ICON_FILE, 'icon');
+        $pass->addImage($icon);
 
-        // Add barcode
-        $barcode = new Barcode('PKBarcodeFormatQR', 'barcodeMessage');
-        $ticket->setBarcode($barcode);
+// Set pass structure
+        $pass->setStructure($structure);
 
-        $icon = new Image($this->get('eo_passbook.icon_file'), 'icon');
-        $ticket->addImage($icon);
+// Add barcode
+        $barcode = new Barcode(Barcode::TYPE_QR, 'barcodeMessage');
+        $pass->setBarcode($barcode);
 
-        return $this->render('EoPassbookBundle:Demo:index.html.twig', array('pass' => $factory->package($ticket)));
+// Create pass factory instance
+
+        return new BinaryFileResponse(
+            $passFactory->package($pass),
+            200,
+            [
+                'Content-Type' => 'application/vnd.apple.pkpass'
+            ],
+            true,
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT
+        );
     }
 }
