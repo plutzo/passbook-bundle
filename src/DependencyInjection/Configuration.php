@@ -19,17 +19,28 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('marlinc_passbook');
         $rootNode = $treeBuilder->getRootNode();
-
+        
         $rootNode
             ->children()
-                ->scalarNode('pass_type_identifier')->isRequired()->cannotBeEmpty()->end()
-                ->scalarNode('team_identifier')->isRequired()->cannotBeEmpty()->end()
-                ->scalarNode('organization_name')->isRequired()->cannotBeEmpty()->end()
-                ->scalarNode('p12_certificate')->isRequired()->cannotBeEmpty()->end()
-                ->scalarNode('p12_certificate_password')->isRequired()->end()
-                ->scalarNode('wwdr_certificate')->isRequired()->cannotBeEmpty()->end()
-                ->scalarNode('output_path')->isRequired()->cannotBeEmpty()->end()
-                ->scalarNode('icon_file')->isRequired()->cannotBeEmpty()->end()
+            ->arrayNode('marlinc_passbook_ios')
+                ->addDefaultsIfNotSet()
+                ->children()
+                    ->scalarNode('pass_type_identifier')->isRequired()->cannotBeEmpty()->end()
+                    ->scalarNode('team_identifier')->isRequired()->cannotBeEmpty()->end()
+                    ->scalarNode('organization_name')->isRequired()->cannotBeEmpty()->end()
+                    ->scalarNode('p12_certificate')->isRequired()->cannotBeEmpty()->end()
+                    ->scalarNode('p12_certificate_password')->isRequired()->end()
+                    ->scalarNode('wwdr_certificate')->isRequired()->cannotBeEmpty()->end()
+                    ->scalarNode('output_path')->isRequired()->cannotBeEmpty()->end()
+                    ->scalarNode('icon_file')->isRequired()->cannotBeEmpty()->end()
+                ->end()
+            ->end()
+            ->arrayNode('marlinc_passbook_google')
+                ->addDefaultsIfNotSet()
+                ->children()
+                    ->scalarNode('test')->isRequired()->cannotBeEmpty()->end()
+                ->end()
+            ->end()
             ->end()
         ;
 

@@ -1,18 +1,18 @@
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="Passbook\PassFactory">
-            <argument>%marlinc_passbook.pass_type_identifier%</argument>
-            <argument>%marlinc_passbook.team_identifier%</argument>
-            <argument>%marlinc_passbook.organization_name%</argument>
-            <argument>%marlinc_passbook.p12_certificate%</argument>
-            <argument>%marlinc_passbook.p12_certificate_password%</argument>
-            <argument>%marlinc_passbook.wwdr_certificate%</argument>
+            <argument>%marlinc_passbook_ios.pass_type_identifier%</argument>
+            <argument>%marlinc_passbook_ios.team_identifier%</argument>
+            <argument>%marlinc_passbook_ios.organization_name%</argument>
+            <argument>%marlinc_passbook_ios.p12_certificate%</argument>
+            <argument>%marlinc_passbook_ios.p12_certificate_password%</argument>
+            <argument>%marlinc_passbook_ios.wwdr_certificate%</argument>
             <call method="setOutputPath">
-                <argument>%marlinc_passbook%</argument>
+                <argument>%marlinc_passbook_ios.output_path%</argument>
             </call>
         </service>
     </services>

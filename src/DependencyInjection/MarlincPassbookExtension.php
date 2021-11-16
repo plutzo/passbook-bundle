@@ -28,15 +28,29 @@ class MarlincPassbookExtension extends Extension
         );
         $loader->load('services.xml');
 
-        $configuration = new Configuration(true);
-        $config = $this->processConfiguration($configuration, $configs);
+        foreach ($configs as $subconfig) {
+            $config = $this->unNest($subconfig, null, null, 2);
+            foreach ($config as $key => $value) {
+                $container->setParameter($key, $value);
+            }
+        }
+    }
 
-        $loader = new YamlFileLoader(
-            $container,
-            new FileLocator(__DIR__ . '/../../config/packages')
-        );
+    protected function unNest($elem, $path = null, $result = null, $maxDepth = 10)
+    {
+        if($result === null){
+            $result = array();
+        }
 
-        $container->setParameter('marlinc_passbook', $config);
+        if(is_array($elem) AND $maxDepth){
+            foreach ($elem as $key => $value) {
+                $newPath = $path ? $path . '.' . $key : $key;
+                $result = $this->unNest($value, $newPath, $result, $maxDepth - 1);
+            }
+        } else {
+            $result[$path] = $elem;
+        }
 
+        return $result;
     }
 }

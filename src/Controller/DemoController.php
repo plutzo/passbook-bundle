@@ -21,7 +21,6 @@ class DemoController extends AbstractController
      */
     public function indexAction(PassFactory $passFactory)
     {
-        dd('sss');
         $pass = new EventTicket("123456".rand(1000,9999), "The Beat Goes On");
         $pass->setBackgroundColor('rgb(60, 65, 76)');
         $pass->setLogoText('Apple Inc.');
@@ -46,7 +45,7 @@ class DemoController extends AbstractController
         $structure->addAuxiliaryField($auxiliary);
 
 // Add icon image
-        $icon = new Image(ICON_FILE, 'icon');
+        $icon = new Image($this->container->getParameter('marlinc_passbook_ios.icon_file'), 'icon');
         $pass->addImage($icon);
 
 // Set pass structure
