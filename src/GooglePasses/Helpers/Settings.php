@@ -38,31 +38,25 @@ class Settings
 
     public static function makeClassId($issuerId, $type, array $metadata)
     {
-        return sprintf("%s.%s" , $issuerId, self::makeUid('class', $type, $metadata));
+        return sprintf("%s.%s", $issuerId, self::makeUid('CLASS', $type, $metadata));
     }
 
     public static function makeObjectId($issuerId, $type, array $metadata)
     {
-        return sprintf("%s.%s" , $issuerId, self::makeUid('object', $type, $metadata));
+        return sprintf("%s.%s", $issuerId, self::makeUid('OBJECT', $type, $metadata));
     }
 
     protected static function makeUid($entity, $type, array $metadata)
     {
-        return self::getTypeAsString($type)."_".$entity."_".uniqid('', true);
-
-//        $metadata += [
-//            'type' => self::getTypeAsString($type),
-//            'entity' => $entity,
-//        ];
-//        dd(uniqid('', true));
-//        return hash('sha256', json_encode($metadata));
+        return self::getTypeAsString($type) . "_" . $entity . "_" . uniqid('', true);
     }
 
     /**
      * @param int $typeId
      * @return string|null
      */
-    public static function getTypeAsString($typeId) {
+    public static function getTypeAsString($typeId)
+    {
         return isset(self::$typesMap[$typeId]) ? self::$typesMap[$typeId] : null;
     }
 

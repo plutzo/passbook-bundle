@@ -8,6 +8,7 @@ class MtestClass
 {
     public int $var1;
     public Message $var2;
+
     /**
      * @return int
      */

@@ -19,12 +19,18 @@ class Config
 
     private $serviceAccountCredentials;
 
+    private $scopes;
+
+    private $SaveLink;
+
     public function __construct(
         $issuerId,
         $serviceAccountEmail,
         $serviceAccountFile,
         $applicationName,
-        array $origins
+        array $origins,
+        $scopes,
+        $SaveLink
     )
     {
         $this->issuerId = $issuerId;
@@ -32,6 +38,8 @@ class Config
         $this->serviceAccountFilePath = $serviceAccountFile;
         $this->applicationName = $applicationName;
         $this->origins = $origins;
+        $this->scopes = $scopes;
+        $this->SaveLink = $SaveLink;
         $this->loadServiceAccountFile();
     }
 
@@ -101,4 +109,22 @@ class Config
     {
         return $this->origins;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getScopes()
+    {
+        return $this->scopes;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSaveLink()
+    {
+        return $this->SaveLink;
+    }
+
+
 }

@@ -15,5 +15,17 @@
                 <argument>%marlinc_passbook_ios.output_path%</argument>
             </call>
         </service>
+        <service id="Marlinc\PassbookBundle\GooglePasses\Helpers\Config">
+        <argument>%marlinc_passbook_google.issuser_id%</argument>
+        <argument>%marlinc_passbook_google.service_account_email_address%</argument>
+        <argument>%marlinc_passbook_google.service_account_file%</argument>
+        <argument>%marlinc_passbook_google.application_name%</argument>
+        <argument>%marlinc_passbook_google.origins%</argument>
+        <argument>%marlinc_passbook_google.scopes%</argument>
+        <argument>%marlinc_passbook_google.save_link%</argument>
+        </service>
+        <service id="Marlinc\PassbookBundle\GooglePasses\Clients\GoogleRestClient">
+            <argument type="service" id="Marlinc\PassbookBundle\GooglePasses\Helpers\Config"/>
+        </service>
     </services>
 </container>

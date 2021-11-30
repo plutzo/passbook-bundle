@@ -13,13 +13,19 @@ use Marlinc\PassbookBundle\Services\IosPassBook;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Marlinc\PassbookBundle\GooglePasses\Clients\GoogleRestClient;
+use Marlinc\PassbookBundle\GooglePasses\Helpers\Settings;
+use Marlinc\PassbookBundle\GooglePasses\Helpers\GpapJwt;
+use Marlinc\PassbookBundle\GooglePasses\Helpers\JwtPayload;
+use Marlinc\PassbookBundle\GooglePasses\Clients\MakeClassResource;
+
 
 class DemoController extends AbstractController
 {
     /**
-     * @Route("/passbook/sample", name="passbook_sample" , methods={"GET","HEAD"} )
+     * @Route("iso/passbook/sample", name="ios_passbook_sample" , methods={"GET","HEAD"} )
      */
-    public function indexAction(PassFactory $passFactory)
+    public function iosAction(PassFactory $passFactory)
     {
         $pass = new EventTicket("123456".rand(1000,9999), "The Beat Goes On");
         $pass->setBackgroundColor('rgb(60, 65, 76)');
@@ -66,5 +72,38 @@ class DemoController extends AbstractController
             true,
             ResponseHeaderBag::DISPOSITION_ATTACHMENT
         );
+    }
+
+    /**
+     * @Route("google/passbook/sample", name="google_passbook_sample" , methods={"GET","HEAD"} )
+     */
+    public function googleAction(GoogleRestClient $googleRestClient)
+    {
+        $classId=Settings::makeClassId($googleRestClient->config->getIssuerId(),Settings::TYPE_LOYALTY,[]);
+
+        $objectId=Settings::makeObjectId($googleRestClient->config->getIssuerId(),Settings::TYPE_LOYALTY,[]);
+
+        $classResourcePayload = MakeClassResource::makeLoyaltyClassResource($classId);
+
+        $objectResourcePayload = MakeClassResource::makeLoyaltyObjectResource($classId, $objectId);
+
+        $classResponse = $googleRestClient->insertLoyaltyClass($classResourcePayload);
+        $objectResponse = $googleRestClient->insertLoyaltyObject($objectResourcePayload);
+        
+        $googleRestClient->handleInsertCallStatusCode($classResponse, "class", $classId, NULL);
+
+        // check object insert response. Will print out if object insert succeeds or not. Throws error if object resource is malformed, or if existing objectId's classId does not match the expected classId
+        $googleRestClient->handleInsertCallStatusCode($objectResponse, "object", $objectId, $classId);
+
+        $googlePassJwt = new GpapJwt($googleRestClient->config->getServiceAccountEmail(),$googleRestClient->config->getPrivateKey(),$googleRestClient->config->getOrigins());
+
+        $jwtPayload = new JwtPayload();
+        $jwtPayload->addLoyaltyObject(array("id" => $objectId));
+        $signedJwt = $googlePassJwt->generateSignedJwt($jwtPayload);
+        dump($signedJwt);
+
+        echo ('<a href="'.$googleRestClient->config->getSaveLink().$signedJwt.'" target="_blank" />Save Loyalty Object</a>');
+
+        die();
     }
 }

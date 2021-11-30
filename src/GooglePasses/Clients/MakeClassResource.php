@@ -4,36 +4,29 @@
 namespace Marlinc\PassbookBundle\GooglePasses\Clients;
 
 use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Classes\LoyaltyClass;
-use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\ImageModuleData;
-use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\TextModuleData;
-use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\Message;
-use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\Uri;
-use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\ImageUri;
-use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\Image;
-use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\LoyaltyPointsBalance;
-use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\LoyaltyPoints;
-use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\LabelValue;
-use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Collections\LabelValueRow;
-use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\AppLinkData;
 use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Collections\InfoModuleData;
-use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\LatLongPoint;
-use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\Barcode;
-use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Objects\LoyaltyObject;
+use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Collections\LabelValueRow;
 use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Collections\LinksModuleData;
 use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Collections\LocalizedString;
+use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\Barcode;
+use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\Image;
+use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\ImageModuleData;
+use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\ImageUri;
+use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\LabelValue;
+use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\LatLongPoint;
+use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\LoyaltyPoints;
+use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\LoyaltyPointsBalance;
+use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\Message;
+use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\TextModuleData;
 use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\TranslatedString;
+use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Models\Uri;
+use Marlinc\PassbookBundle\GooglePasses\WalletObjects\Objects\LoyaltyObject;
 
 class MakeClassResource
 {
 
     public static function makeLoyaltyClassResource($classId)
     {
-        $localOriginName = new LocalizedString();
-        $localOriginNameTranslated = new TranslatedString();
-        $localOriginNameTranslated->setLanguage( "en-US");
-        $localOriginNameTranslated->setValue("SFO Transit Center");
-        $localOriginName->setDefaultValue($localOriginNameTranslated);
-
         $logoUri = new ImageUri();
         $logoUri->setUri("http://farm8.staticflickr.com/7340/11177041185_a61a7f2139_o.jpg");
         $logoUri->setDescription('Coffee beans');
@@ -42,7 +35,7 @@ class MakeClassResource
 
         $localOriginName = new LocalizedString();
         $localOriginNameTranslated = new TranslatedString();
-        $localOriginNameTranslated->setLanguage( "en-US");
+        $localOriginNameTranslated->setLanguage("en-US");
         $localOriginNameTranslated->setValue("SFO Transit Center");
         $localOriginName->setDefaultValue($localOriginNameTranslated);
 
@@ -51,9 +44,9 @@ class MakeClassResource
         $textModulesData->setBody("Welcome to Baconrista rewards. ");
         $textModulesData->setHeader("Rewards details");
 
-       $locationUri = new Uri();
-       $locationUri->setUri("http://maps.google.com/");
-       $locationUri->setDescription("Nearby Locations");
+        $locationUri = new Uri();
+        $locationUri->setUri("http://maps.google.com/");
+        $locationUri->setDescription("Nearby Locations");
 
         $telephoneUri = new Uri();
         $telephoneUri->setUri("tel:6505555555");
@@ -122,8 +115,8 @@ class MakeClassResource
         $accountUri->setUri("http://wwww.google.com/");
         $accountUri->setDescription("My Baconrista Account");
 
-       $linksModuleData = new LinksModuleData();
-       $linksModuleData->setUris(array($accountUri));
+        $linksModuleData = new LinksModuleData();
+        $linksModuleData->setUris(array($accountUri));
 
         $location = new LatLongPoint();
         $location->setLatitude(37.424015499999996);

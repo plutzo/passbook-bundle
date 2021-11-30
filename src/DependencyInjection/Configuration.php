@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('marlinc_passbook');
         $rootNode = $treeBuilder->getRootNode();
-        
+
         $rootNode
             ->children()
             ->arrayNode('marlinc_passbook_ios')
@@ -38,8 +38,14 @@ class Configuration implements ConfigurationInterface
             ->arrayNode('marlinc_passbook_google')
                 ->addDefaultsIfNotSet()
                 ->children()
-                    ->scalarNode('test')->isRequired()->cannotBeEmpty()->end()
-                ->end()
+                    ->scalarNode('service_account_email_address')->isRequired()->cannotBeEmpty()->end()
+                    ->scalarNode('service_account_file')->isRequired()->cannotBeEmpty()->end()
+                    ->scalarNode('application_name')->isRequired()->cannotBeEmpty()->end()
+                    ->scalarNode('issuser_id')->isRequired()->cannotBeEmpty()->end()
+                    ->arrayNode('origins')->scalarPrototype()->end()->end()
+                    ->arrayNode('scopes')->scalarPrototype()->end()->end()
+                    ->scalarNode('save_link')->isRequired()->cannotBeEmpty()->end()
+            ->end()
             ->end()
             ->end()
         ;

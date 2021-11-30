@@ -5,7 +5,8 @@ namespace Marlinc\PassbookBundle\GooglePasses\Clients;
 use Google_Client;
 use Google_Service;
 
-class GoogleWalletObjectsService extends Google_Service {
+class GoogleWalletObjectsService extends Google_Service
+{
     const SERVICE_NAME = 'walletobjects';
     const API_VERSION = 'v1';
 

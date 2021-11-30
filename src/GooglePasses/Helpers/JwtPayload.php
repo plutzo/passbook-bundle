@@ -43,7 +43,7 @@ class JwtPayload
             $this->payload["loyaltyObjects"] = [];
         }
         $this->payload["loyaltyObjects"][] = $resourcePayload;
-       
+
         return;
     }
 
@@ -127,7 +127,8 @@ class JwtPayload
         return;
     }
 
-    public function toArray() {
+    public function toArray()
+    {
         return $this->payload;
     }
 }

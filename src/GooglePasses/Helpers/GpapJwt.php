@@ -19,7 +19,8 @@ namespace Marlinc\PassbookBundle\GooglePasses\Helpers;
 
 use Firebase\JWT\JWT;
 
-class GpapJwt {
+class GpapJwt
+{
     const AUDIENCE = 'google';
     const JWT_TYPE = 'savetoandroidpay';
 
@@ -31,13 +32,15 @@ class GpapJwt {
         $issuer,
         $signingKey,
         array $origins = []
-    ){
+    )
+    {
         $this->iss = $issuer;
         $this->origins = $origins;
         $this->signingKey = $signingKey;
     }
 
-    public function generateUnsignedJwt(JwtPayload $payload){
+    public function generateUnsignedJwt(JwtPayload $payload)
+    {
         $unsignedJwt = array();
         $unsignedJwt['iss'] = $this->iss;
         $unsignedJwt['aud'] = self::AUDIENCE;
@@ -49,7 +52,8 @@ class GpapJwt {
         return $unsignedJwt;
     }
 
-    public function generateSignedJwt(JwtPayload $payload) {
+    public function generateSignedJwt(JwtPayload $payload)
+    {
         $jwtToSign = $this->generateUnsignedJwt($payload);
 
         return JWT::encode($jwtToSign, $this->signingKey, "RS256");
