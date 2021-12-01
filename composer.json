@@ -16,6 +16,8 @@
         "url": "https://packages.aha.biz"
     }],
     "require": {
+        "ext-json": "*",
+        "google/apiclient": "^2.4",
         "eo/passbook": "^3.0",
         "symfony/phpunit-bridge": "^5.2"
     },
