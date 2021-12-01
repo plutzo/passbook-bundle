@@ -6,7 +6,7 @@
 
 [![knpbundles.com](http://knpbundles.com/eymengunay/PassbookBundle/badge-short)](http://knpbundles.com/eymengunay/PassbookBundle)
 
-MarlincPassbookBundle config the EoPassbookBundle library . 
+MarlincPassbookBundle for using the EoPassbookBundle library and GooglePass library. 
 
 **Note**: See php-passbook documentation for more information on obtaining your p12 and wwdr certificates.
 
@@ -40,14 +40,22 @@ Add the following configuration to your `marlinc_passbook.yaml` file
 
 marlinc_passbook:
     marlinc_passbook_ios:
-        pass_type_identifier:       PASS-TYPE-IDENTIFIER
-        team_identifier:            TEAM-IDENTIFIER
-        organization_name:          ORGANIZATION-NAME
-        p12_certificate:            /path/to/p12/certificate
-        p12_certificate_password:   P12-CERTIFICATE-PASSWORD
-        wwdr_certificate:           /path/to/wwdr/certificate
-        output_path:                /path/to/save/pkpass
-        icon_file:                  /path/to/iconfile
+        pass_type_identifier:           PASS-TYPE-IDENTIFIER
+        team_identifier:                TEAM-IDENTIFIER
+        organization_name:              ORGANIZATION-NAME
+        p12_certificate:                /path/to/p12/certificate
+        p12_certificate_password:       P12-CERTIFICATE-PASSWORD
+        wwdr_certificate:               /path/to/wwdr/certificate
+        output_path:                    /path/to/save/pkpass
+        icon_file:                      /path/to/iconfile
+    marlinc_passbook_google:
+        service_account_email_address:  ACCOUNT-EMAIL
+        service_account_file:           /path/to/account_file
+        application_name:               APPLICATION_NAME
+        issuser_id:                     ISSUSER-ID
+        origins:                        ['http://localhost:8000']
+        scopes:                         ['https://www.googleapis.com/auth/wallet_object.issuer']
+        save_link:                      'https://pay.google.com/gp/v/save/'
         
 ```
 All configuration values are required to use the bundle.
@@ -75,7 +83,7 @@ You will now be able to access the example controller from: `http://domain.tld/p
 ```
 ## Usage
 
-This bundle currently adds only a single service, `pass_factory`
+This bundle currently adds only a single service, `pass_factory` for EoPassbookBundle
 ```
 Marlinc\PassbookBundle\Controller\DemoController.php
 ```
@@ -85,6 +93,7 @@ See php-passbook documentation for the rest.
 The following documents are available:
 * [PHP-Passbook Documentation](http://eymengunay.github.io/php-passbook)
 * [PHP-Passbook API DOC](http://eymengunay.github.io/php-passbook/api)
+* [Google Pay API for Passes](https://developers.google.com/pay/passes/guides/introduction/about-google-pay-api-for-passes)
 
 ## License
 This bundle is under the MIT license. See the complete license in the bundle:
