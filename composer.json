@@ -16,13 +16,16 @@
         "url": "https://packages.aha.biz"
     }],
     "require": {
+        "php": "^7.4",
         "ext-json": "*",
         "google/apiclient": "^2.4",
         "eo/passbook": "^3.0",
-        "symfony/phpunit-bridge": "^5.2"
+        "symfony/http-kernel": "^5.4",
+        "symfony/dependency-injection": "^5.4",
+        "symfony/config": "^5.4"
     },
     "require-dev": {
-        "eo/symfony-test-edition": "dev-master"
+        "symfony/phpunit-bridge": "^5.2"
     },
     "autoload": {
         "psr-4": { "Marlinc\\PassbookBundle\\": "src/" }

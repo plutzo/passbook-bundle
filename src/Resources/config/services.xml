@@ -5,27 +5,25 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="Passbook\PassFactory">
-            <argument>%marlinc_passbook_ios.pass_type_identifier%</argument>
-            <argument>%marlinc_passbook_ios.team_identifier%</argument>
-            <argument>%marlinc_passbook_ios.organization_name%</argument>
-            <argument>%marlinc_passbook_ios.p12_certificate%</argument>
-            <argument>%marlinc_passbook_ios.p12_certificate_password%</argument>
-            <argument>%marlinc_passbook_ios.wwdr_certificate%</argument>
+            <argument>%marlinc_passbook.apple.pass_type_identifier%</argument>
+            <argument>%marlinc_passbook.apple.team_identifier%</argument>
+            <argument>%marlinc_passbook.apple.organization_name%</argument>
+            <argument>%marlinc_passbook.apple.p12_certificate%</argument>
+            <argument>%marlinc_passbook.apple.p12_certificate_password%</argument>
+            <argument>%marlinc_passbook.apple.wwdr_certificate%</argument>
             <call method="setOutputPath">
                 <argument>%marlinc_passbook_ios.output_path%</argument>
             </call>
         </service>
-        <service id="Marlinc\PassbookBundle\GooglePasses\Helpers\Config">
-        <argument>%marlinc_passbook_google.issuser_id%</argument>
-        <argument>%marlinc_passbook_google.service_account_email_address%</argument>
-        <argument>%marlinc_passbook_google.service_account_file%</argument>
-        <argument>%marlinc_passbook_google.application_name%</argument>
-        <argument>%marlinc_passbook_google.origins%</argument>
-        <argument>%marlinc_passbook_google.scopes%</argument>
-        <argument>%marlinc_passbook_google.save_link%</argument>
+        <service id="Marlinc\PassbookBundle\GoogleWallet\Helpers\Config">
+            <argument>%marlinc_passbook.google.issuer_id%</argument>
+            <argument>%marlinc_passbook.google.account_config%</argument>
+            <argument>%marlinc_passbook.google.application_name%</argument>
+            <argument>%marlinc_passbook.google.origins%</argument>
+            <argument>%marlinc_passbook.google.scopes%</argument>
         </service>
-        <service id="Marlinc\PassbookBundle\GooglePasses\Clients\GoogleRestClient">
-            <argument type="service" id="Marlinc\PassbookBundle\GooglePasses\Helpers\Config"/>
+        <service id="Marlinc\PassbookBundle\GoogleWallet\Client">
+            <argument type="service" id="Marlinc\PassbookBundle\GoogleWallet\Helpers\Config"/>
         </service>
     </services>
 </container>

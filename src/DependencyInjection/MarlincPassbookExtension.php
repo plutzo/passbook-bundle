@@ -28,21 +28,22 @@ class MarlincPassbookExtension extends Extension
         );
         $loader->load('services.xml');
 
+        // Register all config values as parameters to inject them into services
         foreach ($configs as $subconfig) {
             $config = $this->unNest($subconfig, null, null, 2);
             foreach ($config as $key => $value) {
-                $container->setParameter($key, $value);
+                $container->setParameter('marlinc_passbook.'.$key, $value);
             }
         }
     }
 
     protected function unNest($elem, $path = null, $result = null, $maxDepth = 10)
     {
-        if($result === null){
-            $result = array();
+        if ($result === null) {
+            $result = [];
         }
 
-        if(is_array($elem) AND $maxDepth){
+        if (is_array($elem) && $maxDepth) {
             foreach ($elem as $key => $value) {
                 $newPath = $path ? $path . '.' . $key : $key;
                 $result = $this->unNest($value, $newPath, $result, $maxDepth - 1);

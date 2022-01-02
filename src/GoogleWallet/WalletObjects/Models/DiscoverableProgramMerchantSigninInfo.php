@@ -1,0 +1,20 @@
+<?php
+
+namespace Marlinc\PassbookBundle\GoogleWallet\WalletObjects\Models;
+
+
+class DiscoverableProgramMerchantSigninInfo extends \Google_Model
+{
+    protected $signinWebsite;
+    protected $signinWebsiteType = Uri::class;
+    protected $signinWebsiteDataType = '';
+
+    public function setSigninWebsite(Uri $signinWebsite)
+    {
+        $this->signinWebsite = $signinWebsite;
+    }
+    public function getSigninWebsite()
+    {
+        return $this->signinWebsite;
+    }
+}
