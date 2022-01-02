@@ -3,18 +3,17 @@
     "type":        "symfony-bundle",
     "description": "iOS Passbook for Symfony",
     "keywords":    ["passbook", "ios", "pass", "mobile", "wallet", "coupons", "tickets"],
-    "homepage":    "https://github.com/eymengunay/PassbookBundle",
-    "license":     "MIT",
+    "homepage":    "https://code.aha.biz/marlinc/bundles/passbook",
     "authors": [
         {
-            "name": "Eymen Gunay",
-            "email": "eymen@egunay.com"
+            "name": "Elias",
+            "email": "elias@keen-on.de"
+        },
+        {
+            "name": "Majid",
+            "email": "majid@keen-on.de"
         }
     ],
-    "repositories": [{
-        "type": "composer",
-        "url": "https://packages.aha.biz"
-    }],
     "require": {
         "php": "^7.4",
         "ext-json": "*",
@@ -29,10 +28,5 @@
     },
     "autoload": {
         "psr-4": { "Marlinc\\PassbookBundle\\": "src/" }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
     }
 }
