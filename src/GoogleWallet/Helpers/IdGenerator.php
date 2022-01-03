@@ -25,25 +25,25 @@ class IdGenerator
         self::TYPE_TRANSIT => 'TRANSIT',
     ];
 
-    public static function makeClassId(string $issuerId, int $type): string
+    public static function makeClassId(string $issuerId, int $type, string $uid = null): string
     {
         if (!array_key_exists($type, self::$typesMap)) {
             throw new InvalidArgumentException('Invalid pass type');
         }
-        return sprintf("%s.%s", $issuerId, self::makeUniqueId(self::ENTITY_CLASS, $type));
+        return sprintf("%s.%s", $issuerId, self::makeUniqueId(self::ENTITY_CLASS, $type, $uid));
     }
 
-    public static function makeObjectId(string $issuerId, int $type): string
+    public static function makeObjectId(string $issuerId, int $type, string $uid = null): string
     {
         if (!array_key_exists($type, self::$typesMap)) {
             throw new InvalidArgumentException('Invalid pass type');
         }
-        return sprintf("%s.%s", $issuerId, self::makeUniqueId(self::ENTITY_OBJECT, $type));
+        return sprintf("%s.%s", $issuerId, self::makeUniqueId(self::ENTITY_OBJECT, $type, $uid));
     }
 
-    private static function makeUniqueId(string $entity, string $type): string
+    private static function makeUniqueId(string $entity, string $type, string $uid = null): string
     {
-        return self::getTypeAsString($type) . "_" . $entity . "_" . uniqid('', true);
+        return self::getTypeAsString($type) . "_" . $entity . "_" . $uid ?? uniqid('', true);
     }
 
     public static function getTypeAsString(int $typeId): ?string
