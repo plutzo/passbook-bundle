@@ -12,7 +12,7 @@
             <argument>%marlinc_passbook.apple.p12_certificate_password%</argument>
             <argument>%marlinc_passbook.apple.wwdr_certificate%</argument>
             <call method="setOutputPath">
-                <argument>%marlinc_passbook_ios.output_path%</argument>
+                <argument>%marlinc_passbook.apple.output_path%</argument>
             </call>
         </service>
         <service id="Marlinc\PassbookBundle\GoogleWallet\Helpers\Config">
