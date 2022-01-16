@@ -26,7 +26,7 @@ class Client
 
         // do OAuth2.0 via service account file.
         // See https://developers.google.com/api-client-library/php/auth/service-accounts#authorizingrequests
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $config->getServiceAccountFilePath());
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $config->getConfigFilePath());
 
         $client = new GoogleClient();
         $client->useApplicationDefaultCredentials();

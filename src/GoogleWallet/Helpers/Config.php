@@ -20,6 +20,8 @@ class Config
 
     private array $scopes;
 
+    private string $configFilePath;
+
     public function __construct(
         string $issuerId,
         string $configFilePath,
@@ -32,8 +34,10 @@ class Config
         $this->applicationName = $applicationName;
         $this->origins = $origins;
         $this->scopes = $scopes;
+        $this->configFilePath = $configFilePath;
         $this->serviceAccount = $this->loadServiceAccountData($configFilePath);
     }
+
 
     private function loadServiceAccountData(string $configFilePath): array
     {
@@ -54,6 +58,11 @@ class Config
         }
 
         return $serviceAccountCredentials;
+    }
+
+    public function getConfigFilePath(): string
+    {
+        return $this->configFilePath;
     }
 
     public function getPrivateKey(): string
