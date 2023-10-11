@@ -15,16 +15,16 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^8.2",
         "ext-json": "*",
         "google/apiclient": "^2.4",
         "eo/passbook": "^3.0",
-        "symfony/http-kernel": "^5.4",
-        "symfony/dependency-injection": "^5.4",
-        "symfony/config": "^5.4"
+        "symfony/http-kernel": "^6.3",
+        "symfony/dependency-injection": "^6.3",
+        "symfony/config": "^6.3"
     },
     "require-dev": {
-        "symfony/phpunit-bridge": "^5.2"
+        "symfony/phpunit-bridge": "^6.3"
     },
     "autoload": {
         "psr-4": { "Marlinc\\PassbookBundle\\": "src/" }
