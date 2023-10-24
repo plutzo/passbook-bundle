@@ -3,7 +3,7 @@
     "type":        "symfony-bundle",
     "description": "iOS Passbook for Symfony",
     "keywords":    ["passbook", "ios", "pass", "mobile", "wallet", "coupons", "tickets"],
-    "homepage":    "https://code.aha.biz/marlinc/bundles/passbook",
+    "homepage":    "https://github.com/plutzo/passbook-bundle",
     "authors": [
         {
             "name": "Elias",
